@@ -227,6 +227,8 @@ int nandroid_backup_partition(const char* backup_path, const char* root) {
 int nandroid_backup(const char* backup_path)
 {
     ui_set_background(BACKGROUND_ICON_INSTALLING);
+
+    ui_print("\n");
     
     if (ensure_path_mounted(backup_path) != 0) {
         return print_and_error("Can't mount backup path.\n");
@@ -256,6 +258,9 @@ int nandroid_backup(const char* backup_path)
 
     if (0 != (ret = nandroid_backup_partition(backup_path, "/recovery")))
         return ret;
+
+    if (0 != (ret = nandroid_backup_partition(backup_path, "/splash")))
+	return ret;
 
     Volume *vol = volume_for_path("/wimax");
     if (vol != NULL && 0 == stat(vol->device, &s))
@@ -515,6 +520,7 @@ int nandroid_restore(const char* backup_path, int restore_boot, int restore_syst
 {
     ui_set_background(BACKGROUND_ICON_INSTALLING);
     ui_show_indeterminate_progress();
+    ui_print("\n");
     yaffs_files_total = 0;
 
     if (ensure_path_mounted(backup_path) != 0)
