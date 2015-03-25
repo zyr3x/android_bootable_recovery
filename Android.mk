@@ -13,7 +13,6 @@ LOCAL_SRC_FILES := \
     mounts.c \
     extendedcommands.c \
     nandroid.c \
-    ../../system/core/toolbox/reboot.c \
     ../../system/core/toolbox/dynarray.c \
     firmware.c \
     edifyscripting.c \
@@ -34,11 +33,11 @@ RECOVERY_NAME := ClockworkMod Recovery
 LOCAL_CFLAGS += -DI_AM_KOUSH
 else
 ifndef RECOVERY_NAME
-RECOVERY_NAME := CWM-based Recovery
+RECOVERY_NAME := CWM-based Recovery 
 endif
 endif
 
-RECOVERY_VERSION := $(RECOVERY_NAME) v6.0.3.7
+RECOVERY_VERSION := $(RECOVERY_NAME) v6.0.3.7.1 by zyr3x
 
 LOCAL_CFLAGS += -DRECOVERY_VERSION="$(RECOVERY_VERSION)"
 RECOVERY_API_VERSION := 2
@@ -96,9 +95,8 @@ LOCAL_STATIC_LIBRARIES += libdedupe libcrypto_static libcrecovery libflashutils 
 ifeq ($(BOARD_USES_BML_OVER_MTD),true)
 LOCAL_STATIC_LIBRARIES += libbml_over_mtd
 endif
-
 LOCAL_STATIC_LIBRARIES += libminui libpixelflinger_static libpng libcutils
-LOCAL_STATIC_LIBRARIES += libstdc++ libc
+LOCAL_STATIC_LIBRARIES += libstdc++ libc liblog
 
 LOCAL_STATIC_LIBRARIES += libselinux
 
@@ -106,7 +104,7 @@ LOCAL_C_INCLUDES += system/extras/ext4_utils
 
 include $(BUILD_EXECUTABLE)
 
-RECOVERY_LINKS := bu make_ext4fs edify busybox flash_image dump_image mkyaffs2image unyaffs erase_image nandroid reboot volume setprop getprop dedupe minizip
+RECOVERY_LINKS := bu make_ext4fs edify busybox flash_image dump_image mkyaffs2image unyaffs erase_image nandroid volume setprop getprop dedupe minizip
 
 # nc is provided by external/netcat
 RECOVERY_SYMLINKS := $(addprefix $(TARGET_RECOVERY_ROOT_OUT)/sbin/,$(RECOVERY_LINKS))

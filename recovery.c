@@ -812,7 +812,7 @@ main(int argc, char **argv) {
         if (strstr(argv[0], "bu") == argv[0] + strlen(argv[0]) - 2)
             return bu_main(argc, argv);
         if (strstr(argv[0], "reboot"))
-            return reboot_main(argc, argv);
+//            return reboot_main(argc, argv);
 #ifdef BOARD_RECOVERY_HANDLES_MOUNT
         if (strstr(argv[0], "mount") && argc == 2 && !strstr(argv[0], "umount"))
         {
@@ -821,7 +821,7 @@ main(int argc, char **argv) {
         }
 #endif
         if (strstr(argv[0], "poweroff")){
-            return reboot_main(argc, argv);
+//            return reboot_main(argc, argv);
         }
         if (strstr(argv[0], "setprop"))
             return setprop_main(argc, argv);

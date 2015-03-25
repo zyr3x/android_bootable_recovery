@@ -23,6 +23,9 @@ void
 show_nandroid_advanced_restore_menu(const char* path);
 
 void
+show_nandroid_advanced_backup_menu(const char* path);
+
+void
 show_nandroid_menu();
 
 void
